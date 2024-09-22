@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head xmlns:th="http://www.thymeleaf.org">
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <section th:replace="layout/navegacionInicio :: navegacionInicio"></section>
+        <div class="container text-center my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Sección de bienvenida -->
+            <h1 class="display-4">Bienvenido a Inventario</h1>
+            <p class="lead mt-4">Esta aplicación está diseñada para ayudarte a gestionar de manera eficiente tu inventario, controlar las ventas y analizar las ganancias. Mantén un registro preciso de los productos y optimiza la administración de tu negocio.</p>
+            <hr class="my-4">
+            <p>Explora las diferentes secciones para administrar productos, revisar ventas y generar reportes detallados.</p>
+        </div>
+    </div>
+    <!-- Sección de acciones -->
+    <div class="row text-center mt-5">
+        <div class="col-md-4">
+            <div class="card border-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Inventario</h5>
+                    <p class="card-text">Accede y administra todos los productos de tu inventario.</p>
+                    <a th:href="@{/listarproductos}" class="btn btn-primary">Gestionar Inventario</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Ventas</h5>
+                    <p class="card-text">Revisa y controla todas las ventas realizadas.</p>
+                    <a th:href="@{/listarventa}" class="btn btn-success">Ver Ventas</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Ganancias</h5>
+                    <p class="card-text">Visualiza las ganancias de tus ventas</p>
+                    <a th:href="@{/listarganancia}" class="btn btn-warning">Ver ganancias</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+</html>

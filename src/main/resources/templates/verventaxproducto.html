@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head xmlns:th="http://www.thymeleaf.org">
+        <title>Detalles de factura</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <section th:replace="layout/navegacionVenta :: navegacionDetalleFactura"></section>
+        <h2 class="p-3 mb-2 bg-dark text-white m-3" th:text="'Elementos vendidos de la venta nº' + ${numerodeventa}"></h2>
+         <table class="table table-bordered" border="1">
+            <thead class="table-dark">
+            <tr>
+                <th>Producto</th>
+                <th>Cantidades vendidas</th>
+                <th>Precio de venta</th>
+            </tr>
+            </thead>
+            <tr th:each="detallefactura : ${detallescompletos}">       
+                    <td th:text="${detallefactura.nombreproducto}">IDProducto</td>    
+                    <td th:text="${detallefactura.cantidadesvendidas}">Cantidades vendidas</td>    
+                    <td th:text="${detallefactura.preciodeventa}">Precio de venta</td> 
+            </tr>
+        </table>
+    </body>
+</html>

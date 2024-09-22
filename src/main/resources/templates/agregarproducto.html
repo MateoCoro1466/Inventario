@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head xmlns:th="http://www.thymeleaf.org">
+        <title>Datos de Producto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <section th:replace="layout/navegacionInventario :: navegacionAgregarProducto"></section>
+        <form th:action="@{/guardarproducto}" method="post" th:object="${producto}">
+             <div class="form-row m-3" >
+                 
+                <div class="form-group col-md-6">           
+            <label for="nombreproducto">Producto:</label>
+            <input class="form-control" placeholder="Producto" type="text" name="nombreproducto">
+            <br>
+                </div>
+            
+                 <div class="form-group col-md-6">    
+            <label for="unidad">Unidad:</label>
+            <input class="form-control" placeholder="Unidades" type="number" name="unidad"/>
+            <br>
+            </div>
+                 
+            <div class="form-group col-md-6">    
+            <label for="preciodecompra">Precio de compra:</label>
+            <input class="form-control" placeholder="Precio de compra" type="number" name="preciodecompra"/>
+            <br>
+            </div>
+            
+            <div class="form-group col-md-6">    
+            <label for="preciodeventa">Precio de venta:</label>
+            <input class="form-control" placeholder="Precio de venta" type="number" name="preciodeventa"/>
+            <br>
+            </div>
+                 
+            <input class="btn btn-primary" type="submit" name="guardarproducto" value="Guardar">
+           </div>
+            
+            
+        </form>
+        
+        
+        <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red;"></p>
+        </div>
+    </body>
+</html>

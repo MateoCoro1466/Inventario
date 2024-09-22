@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head xmlns:th="http://www.thymeleaf.org">
+        <title>Ventas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <section th:replace="layout/navegacionVenta :: navegacionVenta"></section>
+        <div th:if="${ventas != null && !ventas.empty}">
+           
+        <div class="container">
+            <div class="row">
+               <div class="col-md-3">
+                <a class="btn btn-success w-100 m-3" th:href="@{/agregarventa}">
+                    <h3>
+                        <i class="fas fa-plus"></i>Nueva venta
+                    </h3>
+                </a>
+               </div>
+           </div>
+        </div>
+        <table class="table table-bordered" border = "1">
+            <thead class="table-dark">
+            <tr>  
+            <th>Total</th>
+            <th>Fecha de venta</th>
+            <th>Detalles</th>
+            </tr>
+            </thead>
+            <tr th:each = "venta : ${ventas}">
+                <td th:text="${venta.totaldeventa}">Total</td>
+                <td th:text="${#dates.format(venta.fechadeventa, 'dd/MM/yyyy')}">Fecha de venta</td>
+                <td><a class="btn btn-secondary" th:href="@{/verventaxproducto/} + ${venta.idventa}" th:text="Ver"></a></td>
+            </tr>           
+        </table>
+        </div>
+        <div th:if="${ventas == null || ventas.empty}">
+            No hay ninguna venta cargada
+        </div>
+        <br>        
+    </body>
+</html>

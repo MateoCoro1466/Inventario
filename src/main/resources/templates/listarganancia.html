@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head xmlns:th="http://www.thymeleaf.org">
+        <title>Ganancias</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <section th:replace="layout/navegacionGanancia :: navegacionGanancia"></section>
+        <table class="table table-bordered" border = "1">
+            <thead class="table-dark">
+            <tr>  
+            <th>Numero de venta</th>
+            <th>Fecha de venta</th>
+            <th>Total</th>
+            <th>Detalles</th>
+            </tr>
+            </thead>
+            <tr th:each = "ganancia : ${ganancias}">                
+                <td th:text="${ganancia.idventa}">Numero de venta</td>
+                <td th:text="${#dates.format(ganancia.fechadeventa, 'dd/MM/yyyy')}">Fecha de venta</td>
+                <td th:text="${ganancia.total}">Total</td>
+                <td><a class="btn btn-secondary" th:href="@{/verventaxproducto/} + ${ganancia.idventa}" th:text="Ver"></a></td>
+            </tr>           
+        </table>
+    </body>
+</html>

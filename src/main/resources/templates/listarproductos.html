@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html >
+    <head xmlns:th="http://www.thymeleaf.org" >
+        <title>Productos</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script src="webjars/jquery/jquery.min.js" type="text/javascript"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>        
+        <section th:replace="layout/navegacionInventario  :: navegacionInventario"></section>
+        <div class="container">
+            <div class="row">
+               <div class="col-md-3">
+                <a class="btn btn-primary w-100 m-3" th:href="@{/agregarproducto}">
+                    <h3>
+                        <i class="fas fa-plus"></i>Agregar
+                    </h3>
+                </a>
+               </div>
+           </div>
+        </div>
+        <div th:if="${productos != null && !productos.empty}">
+        <table class="table table-bordered" border="1">
+            <thead class="table-dark">
+
+            <tr>
+                <th>Producto</th>
+                <th>Unidades</th>
+                <th>Precio de compra</th>
+                <th>Precio de venta</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            
+            </thead>
+            <tr th:each="producto : ${productos}">
+                    <td scope="row" th:text="${producto.nombreproducto}">Producto</td>          
+                    <td th:text="${producto.unidad}">Unidades</td>    
+                    <td th:text="'$' + ${producto.preciodecompra}">Precio de compra</td>    
+                    <td th:text="'$' + ${producto.preciodeventa}">Precio de venta</td> 
+                    <td><a class="btn btn-secondary" th:href="@{/editarproducto/} + ${producto.idproducto}" th:text="Editar"></a></td>
+                    <td><a class="btn btn-secondary" th:href="@{/eliminarproducto/} + ${producto.idproducto}" th:text="Eliminar"></a></td>
+            </tr>
+        </table> 
+        </div>
+        <div th:if="${productos == null || productos.empty}">
+            No hay productos para listar
+        </div>              
+    </body>
+</html>

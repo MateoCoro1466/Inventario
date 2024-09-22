@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head xmlns:th="http://www.thymeleaf.org">
+        <title>Agregar producto a la venta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <section th:replace="layout/navegacionVenta :: navegacionAgregarProductoVenta"></section>
+        
+        <form th:action="@{/guardarventasxproducto}" method="post">
+            
+            <div class="form-row m-3" >
+                
+            <div class="form-group col-md-6">
+            <label for="nombreproducto">Producto</label>
+            <select class="form-control"  id="productoSelect" name="productodropdown">
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option th:each="nombreproductodrop : ${productosdrop}"
+                        th:value="${nombreproductodrop.idproducto}"
+                        th:text="${nombreproductodrop.nombreproducto}"></option>                
+            </select>
+            <br>  
+            </div>
+            
+            <div class="form-group col-md-6">
+            <label for="cantidadesvendidas">Cantidad</label>
+            <input class="form-control" placeholder="Cantidad"
+ type="number" name="cantidadesvendidas" value="0">
+            <br>                                          
+            </div>
+            
+            <input class="btn btn-secondary" type="submit" name="guardarventasxproducto" value="Guardar producto">
+            
+            </div>
+            
+            
+        </form>   
+            
+        
+            <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red;"></p>
+        </div>
+            <div th:if="${error2 != null}">
+        <p th:text="${error2}" style="color: red;"></p>
+        </div>
+        
+    </body>
+</html>

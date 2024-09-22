@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head xmlns:th="http://www.thymeleaf.org">
+        <title>Cargar venta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <section th:replace="layout/navegacionVenta  :: navegacionNuevaVenta"></section>
+        <div th:if="${errorUnidades != null}">
+        <p th:text="${errorUnidades}" style="color: red;"></p>
+        </div>
+        
+               <div class="col-md-3">
+                <a class="btn btn-secondary w-100 m-3" th:href="@{/agregarproductoventa}">
+                    <h3>
+                        <i class="fas fa-plus"></i>Agregar producto a la venta
+                    </h3>
+                </a>
+               </div>
+                 
+            <form th:action="@{/guardarventa}" method="post" th:object="${venta}"> 
+                
+            <input class="btn btn-success m-3" type="submit" name="guardarventa" value="Generar venta">
+        </form>
+            <div th:if="${error != null}">
+                <p th:text="${error}" style="color: red;"></p>
+            </div>
+            <div th:if="${productosparaventa != null}">
+                
+                <div class="container-sm">
+                <h3 class="text-secondary">Productos listados</h3>
+           <table class="table table-sm m-3" border="1">
+            <thead class="table-dark">
+            <tr>
+                <th>Producto</th>
+                <th>Unidades</th>
+                <th>Precio de venta</th>
+            </tr>
+            </thead>
+            <tr th:each="producto : ${productosparaventa}">
+                    <td th:text="${producto.nombreproducto}">Producto</td>          
+                    <td th:text="${producto.unidad}">Unidades</td>     
+                    <td th:text="'$' + ${producto.preciodeventa}">Precio de venta</td> 
+            </tr>
+            
+        </table> 
+            </div> 
+            </div>
+    </body>
+</html>
